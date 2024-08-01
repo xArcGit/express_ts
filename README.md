@@ -7,7 +7,7 @@
 git clone https://github.com/xArcGit/express_ts.git
 
 # go to the project folder
-cd express-ts
+cd express_ts
 
 # install pnpm if you does'nt have
 npm i -g pnpm
