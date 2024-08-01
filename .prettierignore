@@ -1,0 +1,14 @@
+.husky
+node_modules
+.gitignore
+.editorconfig
+.git
+build
+LICENSE
+pnpm-lock.yaml
+docker
+dockerfiles
+env
+shell
+docker-compose.yml
+pnpm-lock.yaml
