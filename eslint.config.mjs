@@ -1,6 +1,8 @@
 import { Linter } from 'eslint';
 
-/** @type {Linter.Config} */
+/**
+ * @type {Linter.Config}
+ */
 const config = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
