@@ -6,7 +6,7 @@
 
 import type { Application } from 'express';
 import { Server, type Socket } from 'socket.io';
-import type { DefaultEventsMap } from 'socket.io/build/typed-events';
+import type { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import init from './app';
 import SocketController from './app/controllers/socket.controller';
 import { socketConfig } from './config/app';

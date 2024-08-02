@@ -12,7 +12,7 @@ const environments = ['local', 'testing', 'development', 'staging', 'production'
 for (const environment of environments) {
   if (!existsSync('./env')) mkdirSync('./env');
   try {
-    await writeFile(`./env/.env.${environment}`, envExample);
+    writeFile(`./env/.env.${environment}`, envExample);
     console.log(clc.green(`.env.${environment} file created successfully! ✅`));
   } catch (err) {
     console.log(clc.red('Something went wrong. ❌'));
