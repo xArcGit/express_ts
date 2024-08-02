@@ -1,6 +1,5 @@
 /**
- * @description This script will create some .env files in the env folder based on the .env.example file in the root project.
- */
+ * @description This script will create some .env files in the env folder based on the .env.example file in the root project.*/
 
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';

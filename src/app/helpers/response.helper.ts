@@ -1,7 +1,6 @@
 /**
  * @description This file contain all helper functions for response
  * @description It will handle all responses for success and failed response from server to client
-
  */
 
 import type { Response } from 'express';
@@ -16,13 +15,13 @@ import type { Response } from 'express';
  */
 
 export function resSuccess(
-    res: Response,
-    status: number,
-    message: string,
+  res: Response,
+  status: number,
+  message: string,
 
-    data?: object | any,
+  data?: object | any,
 ): Response {
-    return res.status(status).type('application/json').json({ success: true, message, data });
+  return res.status(status).type('application/json').json({ success: true, message, data });
 }
 
 /**
@@ -35,11 +34,11 @@ export function resSuccess(
  */
 
 export function resFailed(
-    res: Response,
-    status: number,
-    message: string,
+  res: Response,
+  status: number,
+  message: string,
 
-    error?: object | any,
+  error?: object | any,
 ): Response {
-    return res.status(status).type('application/json').json({ success: false, message, error });
+  return res.status(status).type('application/json').json({ success: false, message, error });
 }

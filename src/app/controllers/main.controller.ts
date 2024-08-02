@@ -1,7 +1,6 @@
 /**
  * @description This file contain a function for control request and response from main endpoints api
  * @description It will handle all request and response from main endpoints api
-
  */
 
 import type { Request, Response } from 'express';

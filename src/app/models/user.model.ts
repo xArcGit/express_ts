@@ -1,45 +1,44 @@
 /**
  * @description This file contain a model for creating user schema using typegoose
-
  */
 
-import { type Ref, pre, prop } from "@typegoose/typegoose";
-import mongoose from "mongoose";
-import { Session } from "./session.model";
+import { type Ref, pre, prop } from '@typegoose/typegoose';
+import mongoose from 'mongoose';
+import { Session } from './session.model';
 
 enum Role {
-	ADMIN = "admin",
-	USER = "user",
+  ADMIN = 'admin',
+  USER = 'user',
 }
 
-@pre<User>("save", function () {
-	this._id = new mongoose.Types.ObjectId();
+@pre<User>('save', function () {
+  this._id = new mongoose.Types.ObjectId();
 })
 export class User {
-	@prop()
-	public _id!: mongoose.Types.ObjectId;
+  @prop()
+  public _id!: mongoose.Types.ObjectId;
 
-	@prop({ required: true })
-	public name!: string;
+  @prop({ required: true })
+  public name!: string;
 
-	@prop({ required: true, unique: true })
-	public phoneNumber!: string;
+  @prop({ required: true, unique: true })
+  public phoneNumber!: string;
 
-	@prop({ required: true, unique: true })
-	public email!: string;
+  @prop({ required: true, unique: true })
+  public email!: string;
 
-	@prop({ required: true })
-	public password!: string;
+  @prop({ required: true })
+  public password!: string;
 
-	@prop()
-	public avatar?: string;
+  @prop()
+  public avatar?: string;
 
-	@prop()
-	public bio?: string;
+  @prop()
+  public bio?: string;
 
-	@prop({ enum: Role, default: Role.USER })
-	public role?: Role;
+  @prop({ enum: Role, default: Role.USER })
+  public role?: Role;
 
-	@prop({ ref: () => Session, default: [] })
-	public sessions?: Ref<Session>[];
+  @prop({ ref: () => Session, default: [] })
+  public sessions?: Ref<Session>[];
 }

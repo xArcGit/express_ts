@@ -1,10 +1,9 @@
 /**
  * @description This file contain a route for main endpoints
-
  */
 
-import express, { type Router } from "express";
-import MainController from "../app/controllers/main.controller";
+import express, { type Router } from 'express';
+import MainController from '../app/controllers/main.controller';
 
 const router: Router = express.Router();
 
@@ -13,6 +12,6 @@ const router: Router = express.Router();
  * @access public
  * @endpoint /api
  */
-router.get("/", MainController.index);
+router.get('/', MainController.index);
 
 export default router;

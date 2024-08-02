@@ -1,10 +1,9 @@
 /**
  * @description This file contain all helper functions for bcrypt
  * @description It will handle all bcrypt functions for hash and compare password
-
  */
 
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 /**
  * @description Make hash password
@@ -12,11 +11,8 @@ import bcrypt from "bcrypt";
  * @param {number} salt - Salt
  * @returns {Promise<string>} - Hash password
  */
-export async function hash(
-	password: string,
-	salt: number = 10,
-): Promise<string> {
-	return await bcrypt.hash(password, salt);
+export async function hash(password: string, salt: number = 10): Promise<string> {
+  return await bcrypt.hash(password, salt);
 }
 
 /**
@@ -25,9 +21,6 @@ export async function hash(
  * @param {string} hashPassword - Hash password
  * @returns {Promise<boolean>} - True or false
  */
-export async function compare(
-	password: string,
-	hashPassword: string,
-): Promise<boolean> {
-	return await bcrypt.compare(password, hashPassword);
+export async function compare(password: string, hashPassword: string): Promise<boolean> {
+  return await bcrypt.compare(password, hashPassword);
 }

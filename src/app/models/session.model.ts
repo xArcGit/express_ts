@@ -1,25 +1,24 @@
 /**
  * @description This file contain a model for creating session schema using typegoose
-
  */
 
-import { type Ref, pre, prop } from "@typegoose/typegoose";
-import mongoose from "mongoose";
-import { User } from "./user.model";
+import { type Ref, pre, prop } from '@typegoose/typegoose';
+import mongoose from 'mongoose';
+import { User } from './user.model';
 
-@pre<Session>("save", function () {
-	this._id = new mongoose.Types.ObjectId();
+@pre<Session>('save', function () {
+  this._id = new mongoose.Types.ObjectId();
 })
 export class Session {
-	@prop()
-	public _id!: mongoose.Types.ObjectId;
+  @prop()
+  public _id!: mongoose.Types.ObjectId;
 
-	@prop({ ref: () => User })
-	public userId?: Ref<User>;
+  @prop({ ref: () => User })
+  public userId?: Ref<User>;
 
-	@prop()
-	public refreshToken?: string;
+  @prop()
+  public refreshToken?: string;
 
-	@prop({ required: true })
-	public expiresAt!: Date;
+  @prop({ required: true })
+  public expiresAt!: Date;
 }

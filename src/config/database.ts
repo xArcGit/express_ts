@@ -1,6 +1,5 @@
 /**
  * @description This file contain database configuration using mongoose
-
  */
 
 import mongoose from 'mongoose';
@@ -12,18 +11,18 @@ import { logger } from '../logger';
  * @returns {Promise<void>} - Promise object of void
  */
 export default async function database(): Promise<void> {
-    const connect = async () => {
-        try {
-            const conn = await mongoose.connect(MONGO_URI);
-            const message = `MongoDB Connected: ${conn.connection.host}:${conn.connection.port}`;
-            logger.info('Database', message);
-        } catch (error: any) {
-            logger.error('Database', error.message);
-            return process.exit(1);
-        }
-    };
+  const connect = async () => {
+    try {
+      const conn = await mongoose.connect(MONGO_URI);
+      const message = `MongoDB Connected: ${conn.connection.host}:${conn.connection.port}`;
+      logger.info('Database', message);
+    } catch (error: any) {
+      logger.error('Database', error.message);
+      return process.exit(1);
+    }
+  };
 
-    await connect();
+  await connect();
 
-    mongoose.connection.on('disconnected', connect);
+  mongoose.connection.on('disconnected', connect);
 }

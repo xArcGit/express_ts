@@ -1,12 +1,11 @@
 /**
  * @description This file contain all functions to interact with users collection in MongoDB database
-
  */
 
-import type mongoose from "mongoose";
-import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
-import { UserModel } from "../models";
-import type { User } from "../models/user.model";
+import type mongoose from 'mongoose';
+import type { FilterQuery, ProjectionType, UpdateQuery } from 'mongoose';
+import { UserModel } from '../models';
+import type { User } from '../models/user.model';
 
 /**
  * @description Get all users
@@ -14,7 +13,7 @@ import type { User } from "../models/user.model";
  * @returns {Promise<User[]>} - Array of users
  */
 async function getAllUsers(filter: FilterQuery<User> = {}): Promise<User[]> {
-	return await UserModel.find(filter, { password: 0, __v: 0 });
+  return await UserModel.find(filter, { password: 0, __v: 0 });
 }
 
 /**
@@ -23,11 +22,8 @@ async function getAllUsers(filter: FilterQuery<User> = {}): Promise<User[]> {
  * @param {ProjectionType<User>} selectedField - Selected field
  * @returns {Promise<User | null>} - User object or null
  */
-async function getOneUserById(
-	id: string | mongoose.Types.ObjectId,
-	selectedField: ProjectionType<User> = {},
-): Promise<User | null> {
-	return await getOneUser({ _id: id }, selectedField);
+async function getOneUserById(id: string | mongoose.Types.ObjectId, selectedField: ProjectionType<User> = {}): Promise<User | null> {
+  return await getOneUser({ _id: id }, selectedField);
 }
 
 /**
@@ -38,15 +34,15 @@ async function getOneUserById(
  * @returns {Promise<User | null>} - User object or null
  */
 async function getOneUser(
-	filter: FilterQuery<User> = {},
-	selectedField: ProjectionType<User> = {},
-	hidePassword: boolean = true,
+  filter: FilterQuery<User> = {},
+  selectedField: ProjectionType<User> = {},
+  hidePassword: boolean = true,
 ): Promise<User | null> {
-	const hidePasswordAndVersion = { password: 0, __v: 0 };
-	return await UserModel.findOne(filter, {
-		...(hidePassword ? hidePasswordAndVersion : {}),
-		...(typeof selectedField === "object" ? selectedField : {}),
-	});
+  const hidePasswordAndVersion = { password: 0, __v: 0 };
+  return await UserModel.findOne(filter, {
+    ...(hidePassword ? hidePasswordAndVersion : {}),
+    ...(typeof selectedField === 'object' ? selectedField : {}),
+  });
 }
 
 /**
@@ -55,7 +51,7 @@ async function getOneUser(
  * @returns {Promise<User>} - User object
  */
 async function createUser(data: User | object): Promise<User> {
-	return await UserModel.create(data);
+  return await UserModel.create(data);
 }
 
 /**
@@ -64,11 +60,8 @@ async function createUser(data: User | object): Promise<User> {
  * @param {UpdateQuery<User>} data - User data
  * @returns {Promise<User | null>} - User object or null
  */
-async function updateOneUserById(
-	id: string | mongoose.Types.ObjectId,
-	data: UpdateQuery<User>,
-): Promise<User | null> {
-	return await UserModel.findByIdAndUpdate(id, data, { new: true });
+async function updateOneUserById(id: string | mongoose.Types.ObjectId, data: UpdateQuery<User>): Promise<User | null> {
+  return await UserModel.findByIdAndUpdate(id, data, { new: true });
 }
 
 /**
@@ -77,11 +70,8 @@ async function updateOneUserById(
  * @param {UpdateQuery<User>} data - User data
  * @returns {Promise<any>} - Result
  */
-async function updateOneUser(
-	filter: FilterQuery<User>,
-	data: UpdateQuery<User>,
-): Promise<any> {
-	return await UserModel.updateOne(filter, data, { new: true });
+async function updateOneUser(filter: FilterQuery<User>, data: UpdateQuery<User>): Promise<any> {
+  return await UserModel.updateOne(filter, data, { new: true });
 }
 
 /**
@@ -90,7 +80,7 @@ async function updateOneUser(
  * @returns {Promise<any>} - Result
  */
 async function deleteOneUser(filter: FilterQuery<User>): Promise<any> {
-	return await UserModel.deleteOne(filter);
+  return await UserModel.deleteOne(filter);
 }
 
 /**
@@ -98,19 +88,17 @@ async function deleteOneUser(filter: FilterQuery<User>): Promise<any> {
  * @param {string | mongoose.Types.ObjectId} id - User id
  * @returns {Promise<User | null>} - User object or null
  */
-async function deleteOneUserById(
-	id: string | mongoose.Types.ObjectId,
-): Promise<User | null> {
-	return await UserModel.findByIdAndDelete(id);
+async function deleteOneUserById(id: string | mongoose.Types.ObjectId): Promise<User | null> {
+  return await UserModel.findByIdAndDelete(id);
 }
 
 export default {
-	createUser,
-	deleteOneUserById,
-	getAllUsers,
-	getOneUser,
-	getOneUserById,
-	updateOneUserById,
-	deleteOneUser,
-	updateOneUser,
+  createUser,
+  deleteOneUserById,
+  getAllUsers,
+  getOneUser,
+  getOneUserById,
+  updateOneUserById,
+  deleteOneUser,
+  updateOneUser,
 };

@@ -1,10 +1,9 @@
 /**
  * @description This file contain all JWT functions
  * @description It will handle all JWT functions for generate, verify and decode token
-
  */
 
-import jwt, { type JwtPayload } from "jsonwebtoken";
+import jwt, { type JwtPayload } from 'jsonwebtoken';
 
 /**
  * @description Generate token
@@ -13,12 +12,8 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
  * @param {string | number} expired - Expired time
  * @returns {string} - Token
  */
-export function generateToken(
-	payload: object | string,
-	tokenSecret: string,
-	expired: string | number,
-): string {
-	return jwt.sign(payload, tokenSecret as string, { expiresIn: expired });
+export function generateToken(payload: object | string, tokenSecret: string, expired: string | number): string {
+  return jwt.sign(payload, tokenSecret as string, { expiresIn: expired });
 }
 
 /**
@@ -27,16 +22,13 @@ export function generateToken(
  * @param {string} tokenSecret - Token secret key
  * @returns {Promise<object | string | undefined>}
  */
-export function verifyToken(
-	token: string,
-	tokenSecret: string,
-): Promise<object | string | undefined> {
-	return new Promise((resolve, reject) => {
-		jwt.verify(token, tokenSecret, (error, decoded) => {
-			if (error) reject(error);
-			resolve(decoded);
-		});
-	});
+export function verifyToken(token: string, tokenSecret: string): Promise<object | string | undefined> {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, tokenSecret, (error, decoded) => {
+      if (error) reject(error);
+      resolve(decoded);
+    });
+  });
 }
 
 /**
@@ -45,5 +37,5 @@ export function verifyToken(
  * @returns {JwtPayload | string | null}
  */
 export function decodeToken(token: string): JwtPayload | string | null {
-	return jwt.decode(token);
+  return jwt.decode(token);
 }

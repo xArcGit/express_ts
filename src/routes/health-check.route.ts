@@ -1,10 +1,9 @@
 /**
  * @description This file contain all routes for authentication endpoints
-
  */
 
-import express, { type Router } from "express";
-import healthCheckController from "../app/controllers/health-check.controller";
+import express, { type Router } from 'express';
+import healthCheckController from '../app/controllers/health-check.controller';
 
 const router: Router = express.Router();
 
@@ -13,6 +12,6 @@ const router: Router = express.Router();
  * @access public
  * @endpoint /api/health-check
  */
-router.get("/", healthCheckController.healthCheck);
+router.get('/', healthCheckController.healthCheck);
 
 export default router;

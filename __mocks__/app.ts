@@ -1,5 +1,5 @@
-import type { Application } from "express";
-import init from "../src/app";
+import type { Application } from 'express';
+import init from '../src/app';
 
 const app: Application = init();
 

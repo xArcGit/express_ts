@@ -1,12 +1,11 @@
 /**
  * @description This file contain all refresh token JWT helper functions
  * @description It will handle all refresh token JWT functions for generate, verify and get user payload from refresh token
-
  */
 
-import type { JwtPayload } from "jsonwebtoken";
-import { REFRESH_TOKEN_SECRET } from "../../config/env";
-import { decodeToken, generateToken, verifyToken } from "../jwt";
+import type { JwtPayload } from 'jsonwebtoken';
+import { REFRESH_TOKEN_SECRET } from '../../config/env';
+import { decodeToken, generateToken, verifyToken } from '../jwt';
 
 /**
  * @description Generate refresh token
@@ -14,11 +13,8 @@ import { decodeToken, generateToken, verifyToken } from "../jwt";
  * @param {string} expired
  * @returns {string}
  */
-export function generateRefreshToken(
-	payload: object | string = {},
-	expired: string = "10h",
-): string {
-	return generateToken(payload, REFRESH_TOKEN_SECRET, expired);
+export function generateRefreshToken(payload: object | string = {}, expired: string = '10h'): string {
+  return generateToken(payload, REFRESH_TOKEN_SECRET, expired);
 }
 
 /**
@@ -26,10 +22,8 @@ export function generateRefreshToken(
  * @param {string} token
  * @returns {Promise<object | string | undefined>}
  */
-export function verifyRefreshToken(
-	token: string,
-): Promise<object | string | undefined> {
-	return verifyToken(token, REFRESH_TOKEN_SECRET);
+export function verifyRefreshToken(token: string): Promise<object | string | undefined> {
+  return verifyToken(token, REFRESH_TOKEN_SECRET);
 }
 
 /**
@@ -37,8 +31,6 @@ export function verifyRefreshToken(
  * @param {string} token
  * @returns {JwtPayload | string | null}
  */
-export function getUserPayloadFromRefreshToken(
-	token: string,
-): JwtPayload | string | null {
-	return decodeToken(token);
+export function getUserPayloadFromRefreshToken(token: string): JwtPayload | string | null {
+  return decodeToken(token);
 }

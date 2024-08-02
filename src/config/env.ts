@@ -1,9 +1,8 @@
 /**
  * @description This file contain all environment variables
-
  */
 
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config({ path: `./env/.env.${process.env.NODE_ENV}` });
 
 export const PORT = Number(process.env.PORT) || 3000;

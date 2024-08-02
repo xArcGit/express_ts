@@ -1,11 +1,10 @@
 /**
  * @description This file contain a function for handle websocket / socket.io events
  * @description It will handle all websocket / socket.io events from client side
-
  */
 
 import type { Server, Socket } from 'socket.io';
-import type { DefaultEventsMap } from 'socket.io/build/typed-events';
+import type { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import { logger } from '../../logger';
 
 /**

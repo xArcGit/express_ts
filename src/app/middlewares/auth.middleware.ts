@@ -1,6 +1,5 @@
 /**
  * @description This file contain a middleware to check if user is authenticated or not
-
  */
 
 import type { NextFunction, Response } from 'express';
@@ -17,26 +16,26 @@ import { logger } from '../../logger';
  * @returns {Promise<void | Response>} - Promise object of void or Response
  */
 export default async function auth(req: IRequest, res: Response, next: NextFunction): Promise<undefined | Response> {
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader?.split(' ')[1];
+
+    if (!token) return resFailed(res, 401, 'Token invalid');
+
     try {
-        const authHeader = req.headers.authorization;
-        const token = authHeader?.split(' ')[1];
+      await verifyAccessToken(token);
 
-        if (!token) return resFailed(res, 401, 'Token invalid');
+      const decoded = getUserPayloadFromAccessToken(token) as any;
+      req.user = decoded;
 
-        try {
-            await verifyAccessToken(token);
-
-            const decoded = getUserPayloadFromAccessToken(token) as any;
-            req.user = decoded;
-
-            next();
-            return;
-        } catch (error: any) {
-            logger.error(auth.name, error.message);
-            return resFailed(res, 401, 'Token invalid');
-        }
+      next();
+      return;
     } catch (error: any) {
-        logger.error(auth.name, error.message);
-        return resFailed(res, 401, 'Unauthorized');
+      logger.error(auth.name, error.message);
+      return resFailed(res, 401, 'Token invalid');
     }
+  } catch (error: any) {
+    logger.error(auth.name, error.message);
+    return resFailed(res, 401, 'Unauthorized');
+  }
 }
