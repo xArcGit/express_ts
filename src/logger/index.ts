@@ -17,6 +17,14 @@
 
 import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
+import path from 'path';
+import fs from 'fs';
+
+// Ensure the logs directory exists
+const logDir = 'logs';
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
 
 // Define custom formats
 const { combine, timestamp, printf, colorize } = format;
@@ -25,18 +33,22 @@ const myFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}]: ${message}`;
 });
 
+// Create a custom file transport to include time in the filename
+const fileTransport = new DailyRotateFile({
+  filename: path.join(logDir, 'application-%DATE%-%H-%M-%S.log'),
+  datePattern: 'YYYY-MM-DD',
+  maxFiles: '14d',
+  format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), myFormat),
+});
+
 // Create logger
 export const logger = createLogger({
   level: 'info',
   format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), myFormat),
   transports: [
     new transports.Console({
-      format: combine(colorize(), myFormat),
+      format: combine(colorize(), timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), myFormat),
     }),
-    new DailyRotateFile({
-      filename: 'logs/application-%DATE%.log',
-      datePattern: 'YYYY-MM-DD',
-      maxFiles: '14d',
-    }),
+    fileTransport,
   ],
 });

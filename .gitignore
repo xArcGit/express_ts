@@ -5,3 +5,4 @@ env/.env.production*
 env/.env.staging
 env/.env.development
 env/.env.testing
+logs/*

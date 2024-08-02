@@ -27,7 +27,7 @@ services:
             ACCESS_TOKEN_SECRET: das9807asd908a90d8sa09d323
             REFRESH_TOKEN_SECRET: c9sddc8s90cuscuj90ew8r09w3
             SESSION_TOKEN_SECRET: das90d8sad7sa8d7as89d7asdsad
-            # TRUSTED_DOMAINS: http://localhost:4000
+            TRUSTED_DOMAINS: http://127.0.0.1:4000
         networks:
             - express-ts-network
         depends_on:
