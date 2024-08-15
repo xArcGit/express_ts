@@ -15,7 +15,7 @@ import { resSuccess } from '../helpers/response.helper';
 function index(_: Request, res: Response): Response {
   const message = 'Hello from Node.js + Express.js + TypeScript Starter';
   return resSuccess(res, 200, message, {
-    docs: 'https://github.com/kochan4php/express-ts',
+    docs: 'https://github.com/xarcgit/express-ts',
   });
 }
 
